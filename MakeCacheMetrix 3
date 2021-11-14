@@ -1,0 +1,25 @@
+MakeCacheMetrix <- function(x = matrix()) {
+  t <- NULL
+  set <- function(x) {
+    y <- x
+    t <- NULL
+  }
+  get <- function() x
+  setinverse <- function(inverse) t <<- inverse
+  getinverse <- function() t
+  list(set = set,
+       get = get,
+       setinverse = setinverse,
+       getinverse = getinverse)
+}
+cachesolve <- function(x, ...) {
+  t <- y$getinverse()
+  if (!is.null(t)) {
+    message("getting catched data")
+    return(t)
+  }
+  data <- y$get()
+  t <- solve(data, ...)
+  y$setinverse(t)
+  t
+}
